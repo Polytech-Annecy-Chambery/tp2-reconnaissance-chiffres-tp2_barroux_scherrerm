@@ -52,9 +52,9 @@ class Image:
         for i in range(self.H):
             for j in range(self.W):
                 if self.pixels[i,j]>=S :
-                    im_bin.pixels[i][j]=255
+                    im_bin.pixels[i,j]=255
                 else :
-                    im_bin.pixels[i][j]=0
+                    im_bin.pixels[i,j]=0
         return im_bin
                     
             
@@ -69,7 +69,30 @@ class Image:
     #   on retourne une nouvelle image recadree
     #==============================================================================
     def localisation(self):
-        pass
+        l_min=self.H
+        l_max=0
+        c_min=self.W
+        c_max=0
+        
+        for i in range(self.H):
+          for j in range (self.W):
+            if self.pixels[i][j]==0:
+                if j<c_min:
+                    c_min=j
+                if j>c_max:
+                    c_max=j
+                if i<l_min:
+                    l_min=i
+                if i>l_max:
+                    l_max=i
+        im_loc=Image()
+       
+        im_loc.set_pixels(self.pixels[l_min:l_max,c_min:c_max])
+        return im_loc
+    
+                    
+                
+                
 
     #==============================================================================
     # Methode de redimensionnement d'image
