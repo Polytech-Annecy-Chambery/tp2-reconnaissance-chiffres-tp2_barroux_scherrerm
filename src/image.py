@@ -23,7 +23,7 @@ class Image:
 
 
     def load(self, file_name):
-        """ Lecture d'un image a partir d'un fichier de nom "file_name"""
+        """ Lecture d'une image a partir d'un fichier de nom "file_name"""
         self.pixels = io.imread(file_name)
         self.H,self.W = self.pixels.shape 
         print("lecture image : " + file_name + " (" + str(self.H) + "x" + str(self.W) + ")")
@@ -47,7 +47,16 @@ class Image:
     #   on retourne une nouvelle image binarisee
     #==============================================================================
     def binarisation(self, S):
-        pass
+        im_bin = Image()
+        im_bin.set_pixels(np.zeros((self.H, self.W), dtype=np.uint8))
+        for i in self.pixels:
+            for j in self.pixels[i]:
+                if j>=S :
+                    im_bin.append(255)
+                else :
+                    im_bin.append(0)
+                    
+            
 
 
     #==============================================================================
