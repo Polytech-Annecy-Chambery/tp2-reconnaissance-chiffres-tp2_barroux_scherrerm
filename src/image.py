@@ -87,7 +87,7 @@ class Image:
                     l_max=i
         im_loc=Image()
        
-        im_loc.set_pixels(self.pixels[l_min:l_max,c_min:c_max])
+        im_loc.set_pixels(self.pixels[l_min:l_max+1,c_min:c_max+1])
         return im_loc
     
                     
@@ -98,7 +98,10 @@ class Image:
     # Methode de redimensionnement d'image
     #==============================================================================
     def resize(self, new_H, new_W):
-        pass
+        new_im = Image()
+        a = resize(self.pixels, (new_H, new_W), 0)
+        new_im.set_pixels(np.uint8(a*255))
+        return new_im
 
 
     #==============================================================================
