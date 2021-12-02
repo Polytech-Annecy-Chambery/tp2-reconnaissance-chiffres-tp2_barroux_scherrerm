@@ -49,12 +49,13 @@ class Image:
     def binarisation(self, S):
         im_bin = Image()
         im_bin.set_pixels(np.zeros((self.H, self.W), dtype=np.uint8))
-        for i in self.pixels:
-            for j in self.pixels[i]:
-                if j>=S :
-                    im_bin.append(255)
+        for i in range(self.H):
+            for j in range(self.W):
+                if self.pixels[i,j]>=S :
+                    im_bin.pixels[i][j]=255
                 else :
-                    im_bin.append(0)
+                    im_bin.pixels[i][j]=0
+        return im_bin
                     
             
 
